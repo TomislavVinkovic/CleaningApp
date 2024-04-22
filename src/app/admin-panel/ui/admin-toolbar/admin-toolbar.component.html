@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+    <span>Cleaning app</span>
+    <span class="toolbar-spacer"></span>
+
+    <button
+        class="text-button"
+        mat-button
+        [routerLink]="['/admin/users']"
+        routerLinkActive="active-link"
+    >
+        Korisnici
+    </button>
+
+    <button 
+        class="text-button"
+        mat-button
+        [routerLink]="['/admin/listings']"
+    >
+        Oglasi
+    </button>
+
+    <button 
+        class="text-button"
+        mat-button
+        [routerLink]="['/admin/offers']"
+    >
+        Ponude
+    </button>
+
+    <button mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <button 
+        mat-icon-button
+        (click)="logout()"
+    >
+        <mat-icon>logout</mat-icon>
+    </button>
+
+    
+    
+</mat-toolbar>

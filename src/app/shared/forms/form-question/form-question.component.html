@@ -1,0 +1,43 @@
+<div 
+    class="w-100"
+    [formGroup]="form()"
+>
+    <mat-form-field class="w-100">
+        <mat-label>{{ question().label }}</mat-label>
+        @switch (question().controlType) {
+            @case ('text') {
+                <input
+                    matInput 
+                    [formControlName]="question().key" 
+                    [id]="question().key" 
+                    [type]="question().type"
+                >
+            }
+            @case ('dropdown') {
+                <mat-select
+                    class="w-100"
+                    [formControlName]="question().key" 
+                    [id]="question().key" 
+                >
+                    @for (option of question().options; track option) {
+                      <mat-option [value]="option.value">{{option.key}}</mat-option>
+                    }
+                </mat-select>
+            }
+        }
+    </mat-form-field>
+    @if (!isValid) {
+        @if (
+            this.form().controls[this.question().key].hasError('required')
+            && this.form().controls[this.question().key].touched
+        ) {
+            <mat-error>Ovo polje je obvezno</mat-error>
+        }
+        @if (
+            this.form().controls[this.question().key].hasError('email')
+            && this.form().controls[this.question().key].touched
+        ) {
+            <mat-error>Potrebno je unijeti ispravnu E-mail adresu</mat-error>
+        }
+    }
+</div>
