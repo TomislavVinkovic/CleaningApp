@@ -3,7 +3,7 @@ import { AppMaterialModule } from '../../app-material.module';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from '../../shared/logo/logo.component';
-import { UserLoginApiType } from '../../types/api/auth-api-types';
+import { UserLoginApiType } from '../../types/api/auth-api';
 import { QuestionService } from '../../services/forms/question-service/question.service';
 import { QuestionBase } from '../../types/forms/QuestionBase';
 import { AuthService } from '../../services/auth/auth.service';

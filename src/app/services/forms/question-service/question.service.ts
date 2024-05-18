@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { getLoginFormQuestions } from '../../../data/form-questions/logjn-form-questions';
+import { getLoginFormQuestions } from '../../../data/form-questions/login-form-questions';
+import { getCompanyRegistrationFormQuestions } from '../../../data/form-questions/company-registration-form-questions';
 
 @Injectable({
   providedIn: 'root'
@@ -11,5 +12,9 @@ export class QuestionService {
 
   getLoginQuestions() {
     return getLoginFormQuestions();
+  }
+
+  getCompanyRegistrationQuestions() {
+    return getCompanyRegistrationFormQuestions();
   }
 }

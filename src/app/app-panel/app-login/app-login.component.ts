@@ -5,7 +5,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
 import { QuestionControlService } from '../../services/forms/question-control/question-control.service';
 import { QuestionService } from '../../services/forms/question-service/question.service';
-import { UserLoginApiType } from '../../types/api/auth-api-types';
+import { UserLoginApiType } from '../../types/api/auth-api';
 import { QuestionBase } from '../../types/forms/QuestionBase';
 import { AppMaterialModule } from '../../app-material.module';
 import { CommonModule } from '@angular/common';

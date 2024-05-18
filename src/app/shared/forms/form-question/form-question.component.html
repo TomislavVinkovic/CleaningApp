@@ -13,6 +13,15 @@
                     [type]="question().type"
                 >
             }
+            @case ('textbox') {
+                <textarea
+                    matInput
+                    [formControlName]="question().key" 
+                    [id]="question().key" 
+                    [type]="question().type"
+                    rows="10"
+                > </textarea>
+            }
             @case ('dropdown') {
                 <mat-select
                     class="w-100"

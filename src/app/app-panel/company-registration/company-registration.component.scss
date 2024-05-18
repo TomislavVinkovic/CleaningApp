@@ -1,0 +1,38 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    background-color: #F4F4F4;
+
+    .submit-button {
+        width: calc(95% + 40px);
+    }
+
+    .form-part {
+        width: 95%;
+        background-color: white !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 20px;
+
+        .form-part-row {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 20px;
+
+            .form-row {
+                gap: 20px;
+            }
+
+        }
+    }
+}
