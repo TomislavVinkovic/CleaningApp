@@ -24,10 +24,10 @@ import { ErrorHandlerService } from '../../services/error-handler/error-handler.
     ReactiveFormsModule,
     DynamicFormQuestionComponent,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './admin-login.component.html',
+  styleUrl: './admin-login.component.scss'
 })
-export class LoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
 
   questions!: QuestionBase<string>[];
   form!: FormGroup;

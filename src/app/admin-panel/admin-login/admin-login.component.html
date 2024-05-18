@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="auth-card">
+
+        <div class="logo-container">
+            <app-logo type="admin"></app-logo>
+        </div>
+
+        <form
+            class="auth-form"
+            style="padding: 20px;"
+            (ngSubmit)="onSubmit()"
+            [formGroup]="form"
+        >
+            @for(question of questions; track question) {
+                <div class="form-row">
+                    <app-form-question 
+                        [question]="question"
+                        [form]="form"
+                    />
+                </div>
+            }
+            <button
+                mat-flat-button
+                color="primary"
+                class="w-100"
+            >
+                Prijavi se
+            </button>
+        </form>
+    </div>
+</div>

@@ -38,6 +38,9 @@ export class AuthService {
   public isSuperUser = computed(() => 
     this._loggedInUser() && this._loggedInUser()?.roles?.includes(Role.ROLE_ADMIN)
   );
+  public isNormalUser = computed(() =>
+    this._loggedInUser() && this._loggedInUser()?.roles?.includes(Role.ROLE_USER)
+  );
 
   login(login: UserLoginApiType) {
     return this.http.get('sanctum/csrf-cookie').pipe(
