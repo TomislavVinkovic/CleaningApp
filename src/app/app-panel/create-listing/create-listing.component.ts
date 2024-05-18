@@ -8,9 +8,9 @@ import { ErrorHandlerService } from '../../services/error-handler/error-handler.
 import { QuestionControlService } from '../../services/forms/question-control/question-control.service';
 import { QuestionService } from '../../services/forms/question-service/question.service';
 import { MsgDialogService } from '../../services/msg-dialog/msg-dialog.service';
-import { CompanyRegistrationService } from '../company-registration/service/company-registration.service';
-import { ListingService } from '../../services/listing/listing.service';
+import { ListingService } from '../../services/api/listing/listing.service';
 import { QuestionBase } from '../../types/forms/QuestionBase';
+import { CreateListingApiType } from '../../types/api/create-listing-api';
 
 @Component({
   selector: 'app-create-listing',
@@ -39,11 +39,28 @@ export class CreateListingComponent implements OnInit {
 
   ngOnInit(): void {
     this.questions = this.questionService.getCreateListingQuestions();
-    
     this.form = this.questionControlService.toFormGroup(this.questions);
   }
 
+  getFormattedData() {
+    const rawData = this.form.getRawValue();
+    rawData.listingCategory = rawData.listingCategoryService ? 
+      rawData.listingCategoryService : rawData.listingCategoryProduct;
+    rawData.durationDays = rawData.listingKercherRentDays;
+
+    return new CreateListingApiType(rawData);
+  }
+
   onSubmit() {
-    // TODO: implement on submit
+    const data: CreateListingApiType = this.getFormattedData();
+    this.listingService.createListing(data).subscribe({
+      next: (response) => {
+        this.msg.open(response.data.message);
+        this.router.navigate(['/app/home']);
+      },
+      error: (error) => {
+        this.errorHandler.handleError(error);
+      }
+    });
   }
 }

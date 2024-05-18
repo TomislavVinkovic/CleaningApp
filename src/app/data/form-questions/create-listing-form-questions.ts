@@ -38,7 +38,7 @@ export const getCreateListingFormQuestions = () => {
         // listing info
         new TextQuestion({
             key: 'listingDate',
-            type: 'text',
+            type: 'date',
             label: 'Željeni datum izvršenja usluge',
             validator: Validators.compose([Validators.required]),
             order: 5
@@ -71,17 +71,30 @@ export const getCreateListingFormQuestions = () => {
             label: 'Vrsta oglasa',
             options: [
                 // TODO: fetch these from the server
-                { key: 'rent', value: 'Najam' },
-                { key: 'service', value: 'Usluga' }
+                { key: 'Usluga', value: 'service' },
+                { key: 'Najam', value: 'rent' },
             ],
             order: 9
         }),
         new SelectQuestion({
-            key: 'listingCategory',
+            key: 'listingCategoryService',
             label: 'Kategorija oglasa',
             // options will be defined in the component
-            options: [{ key: 'rent', value: 'Najam' },],
+            options: [
+                { key: 'Čišćenje tepiha', value: 'carpet' },
+                { key: 'Čišćenje kauča', value: 'sofa' },
+                { key: 'Čišćenje automobila', value: 'car' },
+            ],
             order: 10
+        }),
+        new SelectQuestion({
+            key: 'listingCategoryRent',
+            label: 'Kategorija oglasa',
+            // options will be defined in the component
+            options: [
+                { key: 'Kercher', value: 'kercher' },
+            ],
+            order: 11
         }),
 
         // Depending on the service chosen, one of these input groups will be shown
@@ -93,7 +106,7 @@ export const getCreateListingFormQuestions = () => {
             label: 'Površina tepiha',
             // options will be defined in the component
             // validator: Validators.compose([Validators.maxLength(1000)]),
-            order: 11
+            order: 12
         }),
 
         // SOFA CLEANING
@@ -103,7 +116,7 @@ export const getCreateListingFormQuestions = () => {
             label: 'Broj sjedala',
             // options will be defined in the component
             // validator: Validators.compose([Validators.maxLength(1000)]),
-            order: 12
+            order: 13
         }),
 
         // CAR CLEANING
@@ -111,18 +124,18 @@ export const getCreateListingFormQuestions = () => {
             key: 'listingCarType',
             label: 'Tip vozila',
             options: [
-                { key: 'suv', value: 'SUV' },
-                { key: 'sedan', value: 'Sedan' },
-                { key: 'hatchback', value: 'Hatchback' },
-                { key: 'coupe', value: 'Coupe' },
-                { key: 'cabriolet', value: 'Cabriolet' },
-                { key: 'minivan', value: 'Mini kombi' },
-                { key: 'pickup', value: 'Pickup' },
-                { key: 'van', value: 'Kombi' },
+                { key: 'SUV', value: 'suv' },
+                { key: 'Sedan', value: 'sedan' },
+                { key: 'Hatchback', value: 'hatchback' },
+                { key: 'Coupe', value: 'coupe' },
+                { key: 'Cabriolet', value: 'cabriolet' },
+                { key: 'Mini kombi', value: 'minivan' },
+                { key: 'Pickup', value: 'pickup' },
+                { key: 'Kombi', value: 'van' },
             ],  
             // options will be defined in the component
             // validator: Validators.compose([Validators.required]),
-            order: 13
+            order: 14
         }),
         new TextQuestion({
             key: 'listingCarSeats',
@@ -130,7 +143,7 @@ export const getCreateListingFormQuestions = () => {
             label: 'Broj sjedala', 
             // options will be defined in the component
             // validator: Validators.compose([Validators.maxLength(1000)]),
-            order: 14
+            order: 15
         }),
 
         // Kercher
@@ -140,7 +153,7 @@ export const getCreateListingFormQuestions = () => {
             label: 'PSI', 
             // options will be defined in the component
             // validator: Validators.compose([Validators.maxLength(1000)]),
-            order: 15
+            order: 16
         }),
         new TextboxQuestion({
             key: 'listingKercherChemicals',
@@ -148,15 +161,15 @@ export const getCreateListingFormQuestions = () => {
             label: 'Opis potrebnih kemikalija', 
             // options will be defined in the component
             // validator: Validators.compose([Validators.maxLength(1000)]),
-            order: 16
+            order: 17
         }),
-        new TextboxQuestion({
+        new TextQuestion({
             key: 'listingKercherRentDays',
             type: 'number',
-            label: 'Duljina najma', 
+            label: 'Duljina najma (u danima)', 
             // options will be defined in the component
             // validator: Validators.compose([Validators.maxLength(1000)]),
-            order: 17
+            order: 18
         }),
 
 

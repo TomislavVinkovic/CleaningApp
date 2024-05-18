@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../services/api/auth/auth.service';
 import { AdminToolbarComponent } from '../ui/admin-toolbar/admin-toolbar.component';
 
 @Component({

@@ -26,7 +26,7 @@
                 <mat-select
                     class="w-100"
                     [formControlName]="question().key" 
-                    [id]="question().key" 
+                    [id]="question().key"
                 >
                     @for (option of question().options; track option) {
                       <mat-option [value]="option.value">{{option.key}}</mat-option>

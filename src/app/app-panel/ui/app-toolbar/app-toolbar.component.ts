@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { AppMaterialModule } from '../../../app-material.module';
-import { AuthService } from '../../../services/auth/auth.service';
+import { AuthService } from '../../../services/api/auth/auth.service';
 
 @Component({
   selector: 'app-toolbar',

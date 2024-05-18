@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
 import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
 import { QuestionControlService } from '../../services/forms/question-control/question-control.service';
 import { QuestionService } from '../../services/forms/question-service/question.service';
@@ -11,6 +10,7 @@ import { AppMaterialModule } from '../../app-material.module';
 import { CommonModule } from '@angular/common';
 import { DynamicFormQuestionComponent } from '../../shared/forms/form-question/form-question.component';
 import { LogoComponent } from '../../shared/logo/logo.component';
+import { AuthService } from '../../services/api/auth/auth.service';
 
 @Component({
   selector: 'app-app-login',

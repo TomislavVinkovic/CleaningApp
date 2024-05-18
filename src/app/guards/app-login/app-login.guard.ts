@@ -1,8 +1,8 @@
 import { toObservable } from '@angular/core/rxjs-interop';
 import { CanActivateFn, Router } from '@angular/router';
 import { filter, take, map } from 'rxjs';
-import { AuthService } from '../../services/auth/auth.service';
 import { inject } from '@angular/core';
+import { AuthService } from '../../services/api/auth/auth.service';
 
 export const appLoginGuard: CanActivateFn = (route, state) => {
 

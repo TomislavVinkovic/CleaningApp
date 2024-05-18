@@ -4,7 +4,7 @@
 
     <div class="form-part" style="margin-top: 20px;">
         <div class="form-row">
-            <h1>Podaci o odgovornoj osobi</h1>
+            <h1>Osobni podaci</h1>
         </div>
 
         <div class="form-part-row">
@@ -22,14 +22,6 @@
                 />
             </div>
         </div>
-        
-
-    </div>
-
-    <div class="form-part" style="margin-top: 20px;">
-        <div class="form-row">
-            <h1>Podaci o tvrtci</h1>
-        </div>
 
         <div class="form-part-row">
             <div class="form-row">
@@ -37,14 +29,46 @@
                     [question]="questions[2]"
                     [form]="form"
                 />
+            </div>
+    
+            <div class="form-row">
                 <app-form-question 
                     [question]="questions[3]"
                     [form]="form"
                 />
+            </div>
+        </div>
+        
+
+    </div>
+
+    <div class="form-part" style="margin-top: 20px;">
+        <div class="form-row">
+            <h1>Podaci o oglasu</h1>
+        </div>
+
+        <div class="form-part-row">
+            <div class="form-row">
                 <app-form-question 
                     [question]="questions[4]"
                     [form]="form"
                 />
+                <app-form-question 
+                    [question]="questions[8]"
+                    [form]="form"
+                />
+                @if(form.controls['listingType'].value === 'service') {
+                    <app-form-question 
+                        [question]="questions[9]"
+                        [form]="form"
+                    />
+                }
+                @else if(form.controls['listingType'].value === 'rent') {
+                    <app-form-question 
+                        [question]="questions[10]"
+                        [form]="form"
+                    />
+                }
             </div>
     
             <div class="form-row">
@@ -62,15 +86,90 @@
                 />
             </div>
         </div>
-        
 
-        <div class="form-row">
-            <app-form-question 
-                [question]="questions[8]"
-                [form]="form"
-            />
-        </div>
     </div>
+
+    @if(
+        !!(
+            form.controls['listingCategoryService'].value ||
+            form.controls['listingCategoryRent'].value
+        )
+    ) {
+        <div class="form-part" style="margin-top: 20px;">
+            <div class="form-row">
+                <h1>Dodatni detalji o usluzi</h1>
+            </div>
+            @if(form.controls['listingType'].value === 'service') {
+                @if(form.controls['listingCategoryService'].value === 'carpet') {
+                    <div class="form-part-row">
+                        <div class="form-row">
+                            <app-form-question 
+                                [question]="questions[11]"
+                                [form]="form"
+                            />
+                        </div>
+                    </div>
+                }
+                @if(form.controls['listingCategoryService'].value === 'sofa') {
+                    <div class="form-part-row">
+                        <div class="form-row">
+                            <app-form-question 
+                                [question]="questions[12]"
+                                [form]="form"
+                            />
+                        </div>
+                    </div>
+                }
+                @if(form.controls['listingCategoryService'].value === 'car') {
+                    <div class="form-part-row">
+                        <div class="form-row">
+                            <app-form-question 
+                                [question]="questions[13]"
+                                [form]="form"
+                            />
+                        </div>
+                        
+                        <div class="form-row">
+                            <app-form-question 
+                                [question]="questions[14]"
+                                [form]="form"
+                            />
+                        </div>
+                        
+                    </div>
+                }
+            }
+
+            @if(form.controls['listingType'].value === 'rent') {
+                @if(form.controls['listingCategoryRent'].value === 'kercher') {
+                    <div class="form-part-row">
+                        <div class="form-row">
+                            <app-form-question 
+                                [question]="questions[15]"
+                                [form]="form"
+                            />
+                        </div>
+                        <div class="form-row">
+                            <app-form-question 
+                                [question]="questions[17]"
+                                [form]="form"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <app-form-question 
+                            [question]="questions[16]"
+                            [form]="form"
+                        />
+                    </div>
+                    
+                }
+            }
+
+        </div>
+    
+        
+    }
 
     <button
         type="button"
@@ -78,8 +177,15 @@
         mat-flat-button
         color="primary"
         (click)="onSubmit()"
+        [disabled]="
+            !(
+                form.controls['listingCategoryService'].value ||
+                form.controls['listingCategoryRent'].value
+            )
+        "
     >
         Podnesi zahtjev
     </button>
+    
     
 </form>

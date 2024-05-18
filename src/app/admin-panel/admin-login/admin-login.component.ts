@@ -6,12 +6,12 @@ import { LogoComponent } from '../../shared/logo/logo.component';
 import { UserLoginApiType } from '../../types/api/auth-api';
 import { QuestionService } from '../../services/forms/question-service/question.service';
 import { QuestionBase } from '../../types/forms/QuestionBase';
-import { AuthService } from '../../services/auth/auth.service';
 import { DynamicFormQuestionComponent } from '../../shared/forms/form-question/form-question.component';
 import { QuestionControlService } from '../../services/forms/question-control/question-control.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from '../../services/snack-bar/snack-bar.service';
 import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
+import { AuthService } from '../../services/api/auth/auth.service';
 
 @Component({
   selector: 'app-login',

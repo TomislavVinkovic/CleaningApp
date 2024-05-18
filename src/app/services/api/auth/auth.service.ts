@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { computed, Injectable, signal, WritableSignal } from '@angular/core';
 import { map, pipe, switchMap, tap } from 'rxjs';
-import { UserLoginApiType } from '../../types/api/auth-api';
-import { User } from '../../models/user';
-import { Role } from '../../app_constants';
+import { Role } from '../../../app_constants';
+import { User } from '../../../models/user';
+import { UserLoginApiType } from '../../../types/api/auth-api';
 
 @Injectable({
   providedIn: 'root'

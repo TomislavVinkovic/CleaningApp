@@ -1,8 +1,8 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
 import { filter, take, map } from 'rxjs';
 import {toObservable} from "@angular/core/rxjs-interop";
+import { AuthService } from '../../services/api/auth/auth.service';
 
 
 export const adminAuthGuard: CanActivateFn = (next, state) => {
