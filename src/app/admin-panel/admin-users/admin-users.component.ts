@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, signal, Signal, WritableSignal } from '@angular/core';
 import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
 import { AdminUsersService } from './service/admin-users.service';
@@ -7,6 +6,10 @@ import { AppMaterialModule } from '../../app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClientPagination } from '../../types/client-pagination';
 import { User } from '../../models/user';
+import { SnackBarService } from '../../services/snack-bar/snack-bar.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogService } from '../../services/confirm-dialog/confirm-dialog.service';
+import { AdminUserDetailsComponent } from '../admin-user-details/admin-user-details.component';
 
 @Component({
   selector: 'app-admin-users',
@@ -23,7 +26,10 @@ export class AdminUsersComponent implements OnInit {
 
   constructor(
     private errorHandler: ErrorHandlerService,
-    private usersService: AdminUsersService
+    private usersService: AdminUsersService,
+    private snackbar: SnackBarService,
+    private confirmDialog: ConfirmDialogService,
+    private dialog: MatDialog,
   ) {}
   
   displayedColumns = [
@@ -58,12 +64,86 @@ export class AdminUsersComponent implements OnInit {
     });
   }
 
+  verifyUserConfirmed(user: User) {
+    this.usersService.verifyUser(user.id!).subscribe({
+      next: (response) => {
+        this.snackbar.open(response.data.message);
+        this.getUsers();
+      },
+      error: (error) => {
+        this.errorHandler.handleError(error);
+      }
+    });
+  }
+
+  verifyUser(user: User) {
+    this.confirmDialog.open(
+      'Jeste li sigurni da želite verificirati ovog korisnika?',
+      'Verificiraj korisnika',
+      'Odustani'
+    ).subscribe(answer => {
+      if(answer) {
+        this.verifyUserConfirmed(user);
+      }
+    
+    });
+  }
+
+  deactivateUserConfirmed(user: User) {
+    this.usersService.deactivateUser(user.id!).subscribe({
+      next: (response) => {
+        this.snackbar.open(response.data.message);
+        this.getUsers();
+      },
+      error: (error) => {
+        this.errorHandler.handleError(error);
+      }
+    });
+  
+  }
   deactivateUser(user: User) {
-    // TODO: deactivate user
+    this.confirmDialog.open(
+      'Jeste li sigurni da želite deaktivirati ovog korisnika?',
+      'Deaktiviraj korisnika',
+      'Odustani'
+    ).subscribe(answer => {
+      if(answer) {
+        this.deactivateUserConfirmed(user);
+      }
+    });
+  }
+
+
+  resetPasswordConfirmed(user: User) {
+    this.usersService.resetPassword(user.id!).subscribe({
+      next: (response) => {
+        this.snackbar.open(response.data.message);
+        this.getUsers();
+      },
+      error: (error) => {
+        this.errorHandler.handleError(error);
+      }
+    });
   }
   resetPassword(user: User) {
-    // TODO: reset password by email
+    this.confirmDialog.open(
+      'Jeste li sigurni da resetirati lozinku ovom korisniku?',
+      'Resetiraj lozinku',
+      'Odustani'
+    ).subscribe(answer => {
+      if(answer) {
+        this.resetPasswordConfirmed(user);
+      }
+    });
   } 
+
+  openUserDetails(user: User) {
+    this.dialog.open(AdminUserDetailsComponent, {
+      data: {
+        userId: user.id,
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.getUsers();

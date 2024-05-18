@@ -13,6 +13,7 @@ export class SnackBarService {
     config.data = {
       text: text,
     };
+    config.horizontalPosition = 'left';
     this.matSnackBar.openFromComponent(SnackBarComponent, config);
   }
 

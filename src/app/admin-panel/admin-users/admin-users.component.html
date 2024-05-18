@@ -42,7 +42,13 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="deactivateUser(user)">Obriši</button>
+                    <button mat-menu-item (click)="openUserDetails(user)">Detalji</button>
+                    @if(user.verifiedAt) {
+                      <button mat-menu-item (click)="deactivateUser(user)">Deaktiviraj korisnika</button>
+                    }
+                    @if(!user.verifiedAt) {
+                      <button mat-menu-item (click)="verifyUser(user)">Verificiraj korisnika</button>
+                    }
                     <button mat-menu-item (click)="resetPassword(user)">Resetiraj lozinku</button>
                 </mat-menu>
               </td>

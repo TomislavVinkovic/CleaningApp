@@ -1,4 +1,5 @@
 import { Role } from "../app_constants";
+import { Company } from "./company";
 import { convertToCamelCase } from "./util";
 
 export class User {
@@ -21,8 +22,15 @@ export class User {
 
     public roles?: Array<Role>;
 
+    public company? : Company;
+
     constructor(data?: any) {
         const userPartial = convertToCamelCase(data) as Partial<User>;
         Object.assign(this, userPartial);
+        
+        // props that need special assignment
+        if(data?.company) {
+            this.company = new Company(data.company);
+        }
     }
 }

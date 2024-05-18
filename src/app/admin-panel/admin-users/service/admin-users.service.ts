@@ -34,4 +34,58 @@ export class AdminUsersService {
       })
     );
   }
+
+  getUserDetails(userId: string) {
+    return this.http.get(
+      `user/${userId}`
+    ).pipe(
+      map(( response : any ) => {
+        let user = new User(response.data);
+
+        return {
+          user: user,
+        }
+        
+      })
+    );
+  }
+
+  getProfileDetails() {
+    return this.http.get(
+      `user/details`
+    ).pipe(
+      map(( response : any ) => {
+        let user = new User(response.data.user);
+
+        return {
+          user: user,
+        }
+        
+      })
+    );
+  }
+
+  verifyUser(userId: string) {
+    return this.http.post(
+      `user/${userId}/verify`, {}
+    ).pipe(
+      map(( response : any ) => response)
+    );
+  }
+
+  deactivateUser(userId: string) {
+    return this.http.post(
+      `user/${userId}/deactivate`, {}
+    ).pipe(
+      map(( response : any ) => response)
+    );
+  }
+
+  resetPassword(userId: string) {
+    return this.http.post(
+      `user/${userId}/reset-password`, {}
+    ).pipe(
+      map(( response : any ) => response)
+    );
+  }
 }
