@@ -1,1 +1,39 @@
-<p>admin-listing-details works!</p>
+@if(!!listing) {
+    <h2 mat-dialog-title>{{ 'Detalji o oglasu' }} {{ listing.firstName + ' ' + listing.lastName }}</h2>
+}
+
+<mat-dialog-content>
+    @if(isLoading) {
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+    <div class="content">
+        <div class="content-row">
+            @if(!!listing) {
+                <div>
+                    <h2>Detalji o naručitelju</h2>
+                    <p>Ime: {{ listing.firstName }}</p>
+                    <p>Prezime: {{ listing.lastName }}</p>
+                    <p>E-mail adresa: {{ listing.email }}</p>
+                    <p>OIB: {{ listing.oib }}</p>
+                    <p>Adresa: {{ listing.address }}, {{ listing.postalCode }} {{ listing.city }}</p>
+                </div>
+            }
+        </div>
+
+        @if(!!listing && !!listing.service) {
+            <div class="content-row">
+                <div>
+                    <h2>Detalji o usluzi</h2>
+                    <p>Tip usluge: {{ listing.service.type }}</p>
+                    <p *ngIf="listing.service.durationDays">Trajanje usluge (dani): {{ listing.service.durationDays }}</p>
+                </div>
+            </div>
+        }
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" (click)="onClose()">
+        Zatvori
+    </button>
+</mat-dialog-actions>

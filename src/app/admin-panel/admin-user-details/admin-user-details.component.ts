@@ -18,6 +18,7 @@ import { User } from '../../models/user';
   styleUrl: './admin-user-details.component.scss'
 })
 export class AdminUserDetailsComponent implements OnInit {
+  
   constructor(
     // mat dialog ref and dialog data
     @Inject(MAT_DIALOG_DATA) public data: { userId: string },

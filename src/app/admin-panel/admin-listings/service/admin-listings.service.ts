@@ -36,7 +36,11 @@ export class AdminListingsService {
     return this.http.get(
       `admin/listing/${listingId}`
     ).pipe(
-      map((response: any) => response)
+      map((response: any) => {
+        return {
+          listing: new Listing(response.data)
+        }
+      })
     );
   }
 

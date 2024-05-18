@@ -73,7 +73,9 @@ export class AdminListingsComponent implements OnInit {
 
   openListingDetails(listing: Listing) {
     this.dialog.open(AdminListingDetailsComponent, {
-      data: listing,
+      data: {
+        listingId: listing.id
+      },
       width: '500px',
     });
   }
