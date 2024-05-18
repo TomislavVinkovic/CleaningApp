@@ -1,5 +1,5 @@
 import { QuestionBase } from "./QuestionBase";
 
-class SelectQuestion extends QuestionBase<string> {
-    override controlType = 'select';
+export class SelectQuestion extends QuestionBase<string> {
+    override controlType = 'dropdown';
 }
