@@ -32,6 +32,7 @@ export class AdminUsersComponent implements OnInit {
     private dialog: MatDialog,
   ) {}
   
+  isLoading: boolean = false;
   displayedColumns = [
     'username', 
     'email', 
@@ -51,15 +52,16 @@ export class AdminUsersComponent implements OnInit {
   };
 
   getUsers() {
+    this.isLoading = true;
     this.usersService.getUsers(this.pagination).subscribe({
       next: (data) => {
-        console.log(data);
         this.users.set(data.data);
         this.pagination.totalResults = data.meta.total;
-        console.log(this.users());
+        this.isLoading = false;
       },
       error: (error) => {
         this.errorHandler.handleError(error);
+        this.isLoading = false;
       }
     });
   }
@@ -142,6 +144,7 @@ export class AdminUsersComponent implements OnInit {
       data: {
         userId: user.id,
       },
+      width: '600px',
     });
   }
 

@@ -1,8 +1,47 @@
-<h2 mat-dialog-title>{{ 'Potvrda radnje' }}</h2>
+@if(!!user) {
+    <h2 mat-dialog-title>{{ 'Detalji o korisniku' }} {{ user.firstName + ' ' + user.lastName }}</h2>
+}
 
-<mat-dialog-content></mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-content>
+    @if(isLoading) {
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+    <div class="content">
+        <div class="content-row">
+            @if(!!user) {
+                <div>
+                    <h2>Detalji o korisniku</h2>
+                    <p>Ime: {{ user.firstName }}</p>
+                    <p>Prezime: {{ user.lastName }}</p>
+                    <p>E-mail adresa: {{ user.email }}</p>
+                </div>
+                
+            }
+        
+            @if(!!user && !!user.company) {
+                <div>
+                    <h2>Detalji o tvrtki</h2>
+                    <p>Naziv: {{ user.company.name }}</p>
+                    <p>Adresa: {{ user.company.address }}, {{ user.company.postalCode }} {{ user.company.city }}</p>
+                </div>
+                
+            }
+        </div>
+        
 
+        @if(!!user && !!user.company) {
+            <div>
+                <h2>Opis tvrtke</h2>
+                <p>{{ user.company.description }}</p>
+            </div>
+            
+        }
+    </div>
+    
+    
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
     <button mat-flat-button color="accent" (click)="onClose()">
         Zatvori
     </button>

@@ -29,7 +29,7 @@ export class User {
         Object.assign(this, userPartial);
         
         // props that need special assignment
-        if(data?.company) {
+        if(data && data.company) {
             this.company = new Company(data.company);
         }
     }

@@ -4,7 +4,12 @@
         <h1>Korisnici</h1>
     </div>
     
+    
     <div class="content-table-container">
+      @if(isLoading) {
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      }
+      
         <table mat-table [dataSource]="users()" class="mat-table">
             <!-- Korisničko ime Column -->
             <ng-container matColumnDef="username">
