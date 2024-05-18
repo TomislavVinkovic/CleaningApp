@@ -10,6 +10,8 @@ import { appAuthGuard } from './guards/app-auth/app-auth.guard';
 import { AppDashboardComponent } from './app-panel/app-dashboard/app-dashboard.component';
 import { AppLayoutComponent } from './app-panel/app-layout/app-layout.component';
 import { AppHomeComponent } from './app-panel/app-home/app-home.component';
+import { CreateListingComponent } from './app-panel/create-listing/create-listing.component';
+import { CompanyRegistrationComponent } from './app-panel/company-registration/company-registration.component';
 
 export const routes: Routes = [
     {
@@ -35,6 +37,18 @@ export const routes: Routes = [
                     {
                         'path': 'home',
                         component: AppHomeComponent,
+                    },
+
+                    // create listing
+                    {
+                        path: 'create-listing',
+                        component: CreateListingComponent,
+                    },
+
+                    // company registration
+                    {
+                        path: 'company-registration',
+                        component: CompanyRegistrationComponent,
                     },
 
                     // auth
