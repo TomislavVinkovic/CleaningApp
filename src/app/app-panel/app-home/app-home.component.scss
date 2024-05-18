@@ -1,0 +1,161 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 28px;
+  }
+  
+  .header-container {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .header {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      text-align: left;
+
+      h1 {
+        font-size: 36px;
+        line-height: 40px;
+        color: #6C58CE;
+      }
+
+      .button-row {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    }
+
+    .image-section {
+      flex: 1;
+      img {
+        max-width: 75%;
+        height: auto;
+      }
+    } 
+  }
+  
+  
+  
+  
+  .how-it-works {
+    height: 500px;
+    background-color: #8A2BE2;
+    color: white;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+      font-size: 32px;
+      color: #F1D53E;
+    }
+  }
+  
+  .advantages-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 50px;
+
+    h2 {
+      font-size: 36px;
+    }
+
+    h3 {
+      margin-top: 20px;
+    }
+
+    .advantages {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+  
+      .advantage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        margin: 10px;
+        flex: 1;
+        max-width: 520px;
+        text-align: center;
+        
+        mat-icon {
+          width: 96px;
+          height: 96px;
+          font-size: 96px;
+          color: #6C58CE;
+        }
+      }
+    }
+
+  }
+  
+  
+  
+  
+  footer {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: -20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .copyright-content {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      text-align: left;
+
+      p {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .about-us {
+        font-size: 20px;
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+    }
+  }
+  
