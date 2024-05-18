@@ -12,6 +12,8 @@ import { AppLayoutComponent } from './app-panel/app-layout/app-layout.component'
 import { AppHomeComponent } from './app-panel/app-home/app-home.component';
 import { CreateListingComponent } from './app-panel/create-listing/create-listing.component';
 import { CompanyRegistrationComponent } from './app-panel/company-registration/company-registration.component';
+import { AdminListingsComponent } from './admin-panel/admin-listings/admin-listings.component';
+import { AdminOffersComponent } from './admin-panel/admin-offers/admin-offers.component';
 
 export const routes: Routes = [
     {
@@ -91,6 +93,14 @@ export const routes: Routes = [
                     {
                         'path': 'users',
                         component: AdminUsersComponent,
+                    },
+                    {
+                        'path': 'listings',
+                        component: AdminListingsComponent,
+                    },
+                    {
+                        'path': 'offers',
+                        component: AdminOffersComponent,
                     },
                 ]
             },

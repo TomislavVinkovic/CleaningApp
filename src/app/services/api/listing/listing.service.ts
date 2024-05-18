@@ -13,7 +13,17 @@ export class ListingService {
   ) { }
 
   createListing(data: CreateListingApiType) {
-    return this.http.post('listing/create', data).pipe(
+    return this.http.post('listing', data).pipe(
+      map((response: any) => response)
+    );
+  }
+  getListingDetails(listingId: string) {
+    return this.http.get(`listing/${listingId}`).pipe(
+      map((response: any) => response)
+    );
+  }
+  deleteListing(listingId: string) {
+    return this.http.delete(`listing/${listingId}`).pipe(
       map((response: any) => response)
     );
   }

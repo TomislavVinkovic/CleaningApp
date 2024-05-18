@@ -18,7 +18,7 @@ export class AdminUsersService {
     pagination: ClientPagination
   ) {
     return this.http.get(
-      'user/list',
+      'admin/user/list',
       {
         params: {
           per_page: pagination.perPage,
@@ -37,7 +37,7 @@ export class AdminUsersService {
 
   getUserDetails(userId: string) {
     return this.http.get(
-      `user/${userId}`
+      `admin/user/${userId}`
     ).pipe(
       map(( response : any ) => {
         let user = new User(response.data);
@@ -52,7 +52,7 @@ export class AdminUsersService {
 
   getProfileDetails() {
     return this.http.get(
-      `user/details`
+      `admin/user/details`
     ).pipe(
       map(( response : any ) => {
         let user = new User(response.data.user);
@@ -67,7 +67,7 @@ export class AdminUsersService {
 
   verifyUser(userId: string) {
     return this.http.post(
-      `user/${userId}/verify`, {}
+      `admin/user/${userId}/verify`, {}
     ).pipe(
       map(( response : any ) => response)
     );
@@ -75,7 +75,7 @@ export class AdminUsersService {
 
   deactivateUser(userId: string) {
     return this.http.post(
-      `user/${userId}/deactivate`, {}
+      `admin/user/${userId}/deactivate`, {}
     ).pipe(
       map(( response : any ) => response)
     );
@@ -83,7 +83,7 @@ export class AdminUsersService {
 
   resetPassword(userId: string) {
     return this.http.post(
-      `user/${userId}/reset-password`, {}
+      `admin/user/${userId}/reset-password`, {}
     ).pipe(
       map(( response : any ) => response)
     );

@@ -51,6 +51,10 @@ export class AdminUsersComponent implements OnInit {
     totalResults: 0,
   };
 
+  ngOnInit(): void {
+    this.getUsers();
+  }
+
   getUsers() {
     this.isLoading = true;
     this.usersService.getUsers(this.pagination).subscribe({
@@ -127,6 +131,7 @@ export class AdminUsersComponent implements OnInit {
       }
     });
   }
+
   resetPassword(user: User) {
     this.confirmDialog.open(
       'Jeste li sigurni da resetirati lozinku ovom korisniku?',
@@ -146,10 +151,6 @@ export class AdminUsersComponent implements OnInit {
       },
       width: '600px',
     });
-  }
-
-  ngOnInit(): void {
-    this.getUsers();
   }
 
 }
