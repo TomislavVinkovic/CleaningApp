@@ -49,6 +49,11 @@ export class CompanyRegistrationComponent implements OnInit {
   }
 
   onSubmit() {
+    if(this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const data: CompanyRegistrationApiType = this.getFormattedData();
     this.companyRegistrationService.registerCompany(data).subscribe({
       next: (response) => {

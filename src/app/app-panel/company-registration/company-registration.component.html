@@ -1,11 +1,10 @@
 <form
     class="container"
-    (ngSubmit)="onSubmit()"
 >
 
     <div class="form-part" style="margin-top: 20px;">
         <div class="form-row">
-            <h1>Osobni podaci</h1>
+            <h1>Podaci o odgovornoj osobi</h1>
         </div>
 
         <div class="form-part-row">
@@ -74,9 +73,11 @@
     </div>
 
     <button
+        type="button"
         class="submit-button"
         mat-flat-button
         color="primary"
+        (click)="onSubmit()"
     >
         Podnesi zahtjev
     </button>
