@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { DynamicFormQuestionComponent } from '../../shared/forms/form-question/form-question.component';
 import { QuestionControlService } from '../../services/forms/question-control/question-control.service';
 import { Router } from '@angular/router';
+import { SnackBarService } from '../../services/snack-bar/snack-bar.service';
+import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +36,8 @@ export class LoginComponent implements OnInit {
     private questionService: QuestionService,
     private questionControlService: QuestionControlService,
     private authService: AuthService,
+    private errorHandler: ErrorHandlerService,
+    // private snackBar: SnackBarService,
     private router: Router,
   ) {}
   
@@ -54,7 +58,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin']);
       },
       error: (error) => {
-        
+        this.errorHandler.handleError(error);
       }
     })
   }

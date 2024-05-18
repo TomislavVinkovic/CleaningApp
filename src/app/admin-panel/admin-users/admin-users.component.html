@@ -1,0 +1,67 @@
+<div class="content-admin">
+
+    <div class="header-admin">
+        <h1>Korisnici</h1>
+    </div>
+    
+    <div class="content-table-container">
+        <table mat-table [dataSource]="users()" class="mat-table">
+            <!-- Korisničko ime Column -->
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef> Korisničko ime </th>
+              <td mat-cell *matCellDef="let user"> {{ user.name }} </td>
+            </ng-container>
+        
+            <!-- E-mail Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> E-mail </th>
+              <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+            </ng-container>
+        
+            <!-- Uloga Column -->
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef> Uloga </th>
+              <td mat-cell *matCellDef="let user"> {{ user.roles ? user.roles[0] : 'Nema ulogu'}} </td>
+            </ng-container>
+        
+            <!-- Verificiran Column -->
+            <ng-container matColumnDef="verified">
+              <th mat-header-cell *matHeaderCellDef> Verificiran </th>
+              <td mat-cell *matCellDef="let user"> {{ user.verifiedAt ? 'Da' : 'Ne' }} </td>
+            </ng-container>
+        
+            <!-- Opcije Column -->
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef> Opcije </th>
+              <td mat-cell *matCellDef="let user">
+                <button 
+                    mat-icon-button
+                    [mat-menu-trigger-for]="menu"
+                >
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="deactivateUser(user)">Obriši</button>
+                    <button mat-menu-item (click)="resetPassword(user)">Resetiraj lozinku</button>
+                </mat-menu>
+              </td>
+
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+    
+  
+    <mat-paginator 
+        [pageSizeOptions]="pagination.pageSizeOptions" 
+        showFirstLastButtons
+        [length]="pagination.totalResults"
+    >
+    </mat-paginator>
+  </div>
+
+  
+  
