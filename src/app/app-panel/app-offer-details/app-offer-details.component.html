@@ -1,0 +1,34 @@
+@if(!!offer) {
+    <h1 mat-dialog-title>{{ 'Detalji o ponudi' }}</h1>
+}
+
+<mat-dialog-content>
+    @if(isLoading) {
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+    <div class="content">
+        <div class="content-row">
+            @if(!!offer && !!offer.listing) {
+                <div>
+                    <h2>Detalji o naručitelju</h2>
+                    <p>Ime: {{ offer.listing!.firstName }}</p>
+                    <p>Prezime: {{ offer.listing!.lastName }}</p>
+                    <p>E-mail adresa: {{ offer.listing!.email }}</p>
+                    <p>OIB: {{ offer.listing!.oib }}</p>
+                    <p>Adresa: {{ offer.listing!.address }}, {{ offer.listing!.postalCode }} {{ offer.listing!.city }}</p>
+                </div>
+
+                <div>
+                    <h2>Detalji o ponudi</h2>
+                    <p>Cijena: {{ offer.price }} EUR</p>
+                </div>
+            }
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-flat-button color="accent" (click)="onClose()">
+        Zatvori
+    </button>
+</mat-dialog-actions>
