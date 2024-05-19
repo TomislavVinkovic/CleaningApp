@@ -6,6 +6,7 @@ import { ErrorHandlerService } from '../../services/error-handler/error-handler.
 import { AdminUserDetailsComponent } from '../admin-user-details/admin-user-details.component';
 import { AdminListingsService } from '../admin-listings/service/admin-listings.service';
 import { Listing } from '../../models/listing';
+import { listingCategoryMapper, carTypeMapper } from '../../app_constants';
 
 @Component({
   selector: 'app-admin-listing-details',
@@ -30,6 +31,10 @@ export class AdminListingDetailsComponent implements OnInit {
 
   listing?: Listing;
   isLoading: boolean = false;
+  
+  // just copying so it can be used in the template
+  carTypeMapper = carTypeMapper;
+  listingCategoryMapper = listingCategoryMapper;
 
   fetchData() {
     this.isLoading = true;

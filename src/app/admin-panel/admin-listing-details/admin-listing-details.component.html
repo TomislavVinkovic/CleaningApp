@@ -1,5 +1,5 @@
 @if(!!listing) {
-    <h2 mat-dialog-title>{{ 'Detalji o oglasu' }} {{ listing.firstName + ' ' + listing.lastName }}</h2>
+    <h1 mat-dialog-title>{{ 'Detalji o oglasu' }}</h1>
 }
 
 <mat-dialog-content>
@@ -17,18 +17,54 @@
                     <p>OIB: {{ listing.oib }}</p>
                     <p>Adresa: {{ listing.address }}, {{ listing.postalCode }} {{ listing.city }}</p>
                 </div>
+
+                <div>
+                    <h2>Detalji o oglasu</h2>
+                    <p>Tip usluge: {{ listing.type === 'service' ? 'Usluga' : 'Najam' }}</p>
+                    <p>Kategorija usluge: {{ listingCategoryMapper[listing.service!.type!] }}</p>
+                    <p *ngIf="listing.service!.durationDays">Trajanje usluge (dani): {{ listing.service!.durationDays }}</p>
+                </div>
             }
         </div>
 
-        @if(!!listing && !!listing.service) {
-            <div class="content-row">
+        <div class="content-row">
+
+            @if(!!listing?.service?.carCleaningService) {
                 <div>
                     <h2>Detalji o usluzi</h2>
-                    <p>Tip usluge: {{ listing.service.type }}</p>
-                    <p *ngIf="listing.service.durationDays">Trajanje usluge (dani): {{ listing.service.durationDays }}</p>
+                    <p>Tip usluge: Pranje automobila</p>
+                    <p> Tip vozila: {{ carTypeMapper[listing?.service?.carCleaningService?.carType!] }} </p>
+                    <p> Broj sjedala: {{ listing?.service?.carCleaningService?.noSeats }} </p>
                 </div>
-            </div>
-        }
+            }
+
+            @if(!!listing?.service?.sofaCleaningService) {
+                <div>
+                    <h2>Detalji o usluzi</h2>
+                    <p>Tip usluge: Pranje kauča</p>
+                    <p> Broj sjedala: {{ listing?.service?.sofaCleaningService?.noSeats }} </p>
+                </div>
+            }
+
+            @if(!!listing?.service?.carpetCleaningService) {
+                <div>
+                    <h2>Detalji o usluzi</h2>
+                    <p>Tip usluge: Pranje tepiha</p>
+                    <p> Površina tepiha (cm^2): {{ listing?.service?.carpetCleaningService?.area }} </p>
+                </div>
+            }
+
+            @if(!!listing?.service?.kercherService) {
+                <div>
+                    <h2>Detalji o usluzi</h2>
+                    <p>Tip usluge: Najam kerchera</p>
+                    <p> PSI: {{ listing?.service?.kercherService?.psi }} </p>
+                    <p> Opis kemikalija: </p>
+                    <p>{{ listing?.service?.kercherService?.chemicalsDescription }}</p>
+                </div>
+            }
+
+        </div>
     </div>
 </mat-dialog-content>
 

@@ -16,5 +16,9 @@ export class Listing {
     constructor(data?: any) {
         const listingPartial = convertToCamelCase(data) as Partial<Listing>;
         Object.assign(this, listingPartial);
+
+        if(listingPartial.service) {
+            this.service = new Service(data.service);
+        }
     }
 }

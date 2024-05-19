@@ -76,7 +76,7 @@ export class AdminListingsComponent implements OnInit {
       data: {
         listingId: listing.id
       },
-      width: '500px',
+      maxWidth: '700px',
     });
   }
 
