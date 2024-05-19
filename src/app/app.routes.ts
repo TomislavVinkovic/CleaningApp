@@ -8,70 +8,83 @@ import { appLoginGuard } from './guards/app-login/app-login.guard';
 import { AppLoginComponent } from './app-panel/app-login/app-login.component';
 import { appAuthGuard } from './guards/app-auth/app-auth.guard';
 import { AppDashboardComponent } from './app-panel/app-dashboard/app-dashboard.component';
-import { AppLayoutComponent } from './app-panel/app-layout/app-layout.component';
-import { AppHomeComponent } from './app-panel/app-home/app-home.component';
-import { CreateListingComponent } from './app-panel/create-listing/create-listing.component';
-import { CompanyRegistrationComponent } from './app-panel/company-registration/company-registration.component';
+import { HomeLayoutComponent } from './home-panel/home-layout/home-layout.component';
+import { AppHomeComponent } from './home-panel/app-home/app-home.component';
+import { CreateListingComponent } from './home-panel/create-listing/create-listing.component';
+import { CompanyRegistrationComponent } from './home-panel/company-registration/company-registration.component';
 import { AdminListingsComponent } from './admin-panel/admin-listings/admin-listings.component';
 import { AdminOffersComponent } from './admin-panel/admin-offers/admin-offers.component';
+import { AppJobsComponent } from './app-panel/app-jobs/app-jobs.component';
+import { AppOffersComponent } from './app-panel/app-offers/app-offers.component';
+import { AppListingsComponent } from './home-panel/app-listings/app-listings.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'app',
+        redirectTo: 'home',
         pathMatch: 'full'
     },
+    {
+        path: 'home',
+        component: HomeLayoutComponent,
+        children: [
+            // redirect to home by default
+
+            // home screen
+            {
+                'path': '',
+                component: AppHomeComponent,
+            },
+
+            // create listing
+            {
+                path: 'create-listing',
+                component: CreateListingComponent,
+            },
+
+            // company registration
+            {
+                path: 'company-registration',
+                component: CompanyRegistrationComponent,
+            },
+        ]
+    },
+
     {
         path: 'app',
         children: [
             { 
-                path: '',
-                component: AppLayoutComponent,
+                path: 'login',
+                canActivate: [appLoginGuard],
+                component: AppLoginComponent
+            },
+            { 
+                path: 'dashboard',
+                canActivate: [appAuthGuard],
+                component: AppDashboardComponent,
                 children: [
-                    // redirect to home by default
                     {
-                        'path': '',
-                        redirectTo: 'home',
+                        path: '',
+                        redirectTo: 'jobs',
                         pathMatch: 'full'
                     },
-
-                    // home screen
                     {
-                        'path': 'home',
-                        component: AppHomeComponent,
+                        path: 'jobs',
+                        component: AppJobsComponent
                     },
-
-                    // create listing
                     {
-                        path: 'create-listing',
-                        component: CreateListingComponent,
+                        path: 'offers',
+                        component: AppOffersComponent
                     },
-
-                    // company registration
                     {
-                        path: 'company-registration',
-                        component: CompanyRegistrationComponent,
-                    },
-
-                    // auth
-                    { 
-                        path: 'login',
-                        canActivate: [appLoginGuard],
-                        component: AppLoginComponent
-                    },
-
-                    // dashboard
-                    {
-                        path: 'dashboard',
-                        canActivate: [appAuthGuard],
-                        component: AppDashboardComponent,
-                        children: []
+                        path: 'listings',
+                        component: AppListingsComponent
                     }
                 ]
             },
-            
         ]
     },
+
     {
         path: 'admin',
         children: [

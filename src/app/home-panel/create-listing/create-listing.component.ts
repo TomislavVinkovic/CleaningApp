@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../../app-material.module';
+import { DynamicFormQuestionComponent } from '../../shared/forms/form-question/form-question.component';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../../services/error-handler/error-handler.service';
 import { QuestionControlService } from '../../services/forms/question-control/question-control.service';
 import { QuestionService } from '../../services/forms/question-service/question.service';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { QuestionBase } from '../../types/forms/QuestionBase';
-import { CompanyRegistrationApiType } from '../../types/api/company-registration-api';
-import { DynamicFormQuestionComponent } from '../../shared/forms/form-question/form-question.component';
-import { CompanyRegistrationService } from './service/company-registration.service';
 import { MsgDialogService } from '../../services/msg-dialog/msg-dialog.service';
+import { ListingService } from '../../services/api/listing/listing.service';
+import { QuestionBase } from '../../types/forms/QuestionBase';
+import { CreateListingApiType } from '../../types/api/create-listing-api';
 
 @Component({
-  selector: 'app-company-registration',
+  selector: 'app-create-listing',
   standalone: true,
   imports: [
     CommonModule,
@@ -21,49 +21,46 @@ import { MsgDialogService } from '../../services/msg-dialog/msg-dialog.service';
     ReactiveFormsModule,
     DynamicFormQuestionComponent,
   ],
-  templateUrl: './company-registration.component.html',
-  styleUrl: './company-registration.component.scss'
+  templateUrl: './create-listing.component.html',
+  styleUrl: './create-listing.component.scss'
 })
-export class CompanyRegistrationComponent implements OnInit {
-  
-  questions!: QuestionBase<string>[];
-  form!: FormGroup;
-
+export class CreateListingComponent implements OnInit {
   constructor(
     private questionService: QuestionService,
     private questionControlService: QuestionControlService,
     private errorHandler: ErrorHandlerService,
-    private companyRegistrationService: CompanyRegistrationService,
+    private listingService: ListingService,
     private msg: MsgDialogService,
     private router: Router,
   ) {}
 
+  questions!: QuestionBase<string>[];
+  form!: FormGroup;
+
   ngOnInit(): void {
-      this.questions = this.questionService.getCompanyRegistrationQuestions();
-      this.form = this.questionControlService.toFormGroup(this.questions);
+    this.questions = this.questionService.getCreateListingQuestions();
+    this.form = this.questionControlService.toFormGroup(this.questions);
   }
 
   getFormattedData() {
     const rawData = this.form.getRawValue();
-    return new CompanyRegistrationApiType(rawData);
+    rawData.listingCategory = rawData.listingCategoryService ? 
+      rawData.listingCategoryService : rawData.listingCategoryProduct;
+    rawData.durationDays = rawData.listingKercherRentDays;
+
+    return new CreateListingApiType(rawData);
   }
 
   onSubmit() {
-    if(this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    const data: CompanyRegistrationApiType = this.getFormattedData();
-    this.companyRegistrationService.registerCompany(data).subscribe({
+    const data: CreateListingApiType = this.getFormattedData();
+    this.listingService.createListing(data).subscribe({
       next: (response) => {
         this.msg.open(response.data.message);
-        this.router.navigate(['/app/home']);
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         this.errorHandler.handleError(error);
       }
-    })
+    });
   }
-
 }

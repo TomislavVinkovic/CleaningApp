@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppPanelComponent } from './app-panel.component';
+import { AppOffersComponent } from './app-offers.component';
 
-describe('AppPanelComponent', () => {
-  let component: AppPanelComponent;
-  let fixture: ComponentFixture<AppPanelComponent>;
+describe('AppOffersComponent', () => {
+  let component: AppOffersComponent;
+  let fixture: ComponentFixture<AppOffersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppPanelComponent]
+      imports: [AppOffersComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AppPanelComponent);
+    fixture = TestBed.createComponent(AppOffersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

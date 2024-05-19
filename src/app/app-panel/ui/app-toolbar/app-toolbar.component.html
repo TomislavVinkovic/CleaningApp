@@ -1,37 +1,42 @@
-<mat-toolbar class="toolbar">
-    <a [routerLink]="['/app/home']">
-        <span>Cleaning App</span>
-    </a>
+<mat-toolbar color="primary">
+    <span>Cleaning App Admin</span>
     <span class="toolbar-spacer"></span>
 
-    
-    <!-- TODO: change nav buttons depending on the app route -->
-    <button 
+    <button
         class="text-button"
         mat-button
-        [routerLink]="['/app/create-listing']"
-        color="primary"
+        [routerLink]="['/app/dashboard/jobs']"
+        routerLinkActive="active-link"
     >
-        Predaj oglas
+        Moji poslovi
     </button>
 
     <button 
         class="text-button"
         mat-button
-        [routerLink]="['/app/company-registration']"
-        color="primary"
+        [routerLink]="['/app/dashboard/offers']"
     >
-        Registracija za tvrtke
+        Moje ponude
     </button>
 
     <button 
         class="text-button"
         mat-button
-        [routerLink]="['/app/login']"
-        color="primary"
+        [routerLink]="['/app/dashboard/listings']"
     >
-        Prijava
+        Oglasi
     </button>
+
+    <button mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <button 
+        mat-icon-button
+        (click)="logout()"
+    >
+        <mat-icon>logout</mat-icon>
+    </button>
+
     
     
 </mat-toolbar>
