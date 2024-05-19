@@ -47,6 +47,6 @@ export class AdminOffersService {
   deleteOffer(offerId: string) {
     return this.http.delete(
       `admin/offer/${offerId}`
-    );
+    ).pipe(map((response: any) => response));
   }
 }

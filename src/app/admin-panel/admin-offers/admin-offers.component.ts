@@ -10,6 +10,7 @@ import { ClientPagination } from '../../types/client-pagination';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../../app-material.module';
+import { ConfirmDialogService } from '../../services/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-offers',
@@ -28,6 +29,7 @@ export class AdminOffersComponent {
     private offersService: AdminOffersService,
     private snackbar: SnackBarService,
     private inputDialog: InputDialogService,
+    private confirmDialog: ConfirmDialogService,
     private dialog: MatDialog,
   ) {}
 
@@ -77,4 +79,27 @@ export class AdminOffersComponent {
       width: '700px',
     });
   }
+
+  deleteOffer(offer: Offer) {
+    this.confirmDialog.open(
+      'Jeste li sigurni da želite obrisati oglas?',
+      'Obriši',
+      'Odustani',
+    ).subscribe({
+      next: (result) => {
+        if (result) {
+          this.offersService.deleteOffer(offer.id!).subscribe({
+            next: (response) => {
+              this.snackbar.open(response.data.message);
+              this.getOffers();
+            },
+            error: (error) => {
+              this.errorHandler.handleError(error);
+            }
+          });
+        }
+      }
+    });
+  }
+
 }
