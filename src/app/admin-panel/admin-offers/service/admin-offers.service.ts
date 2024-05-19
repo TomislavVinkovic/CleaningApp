@@ -32,9 +32,9 @@ export class AdminOffersService {
     );
   }
 
-  getListingDetails(listingId: string) {
+  getOfferDetails(offerId: string) {
     return this.http.get(
-      `admin/offer/${listingId}`
+      `admin/offer/${offerId}`
     ).pipe(
       map((response: any) => {
         return {
@@ -44,9 +44,9 @@ export class AdminOffersService {
     );
   }
 
-  deleteListing(listingId: string) {
+  deleteOffer(offerId: string) {
     return this.http.delete(
-      `admin/offer/${listingId}`
+      `admin/offer/${offerId}`
     );
   }
 }
