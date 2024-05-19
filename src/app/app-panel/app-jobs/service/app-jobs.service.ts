@@ -29,6 +29,18 @@ export class AppJobsService {
     );
   }
 
+  getJobDetails(jobId: string) {
+    return this.http.get(`job/${jobId}`)
+      .pipe(
+        map((response: any) => {
+          return {
+            job: new Job(response.data)
+          };
+        
+        })
+      );
+  }
+
   markJobAsComplete(jobId: string) {
     return this.http.post(`job/${jobId}/mark-as-complete`, {})
       .pipe(

@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../../app-material.module';
 import { ConfirmDialogService } from '../../services/confirm-dialog/confirm-dialog.service';
+import { AppJobDetailsComponent } from '../app-job-details/app-job-details.component';
 
 @Component({
   selector: 'app-app-jobs',
@@ -93,6 +94,13 @@ export class AppJobsComponent {
     });
   } 
 
-  openJobDetails(job: Job) {}
+  openJobDetails(job: Job) {
+    this.dialog.open(AppJobDetailsComponent, 
+      {
+        data: { jobId: job.id },
+        width: '700px',
+      },
+    );
+  }
   
 }
