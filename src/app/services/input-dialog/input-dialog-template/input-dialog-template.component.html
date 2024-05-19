@@ -1,0 +1,22 @@
+<mat-dialog-content>
+  {{ data.text }}
+  <div style="margin-top:20px;">
+    <form (submit)="confirm()">
+        <mat-form-field style="width:100%;">
+            <input type="number" matInput name="search-field" placeholder="{{ data.input.placeholder }}" [(ngModel)]="input">
+            <mat-icon matIconSuffix style="font-size: 16px; margin-top: 8px;">euro</mat-icon>
+          </mat-form-field>
+    </form>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button tabindex="-1" (click)="cancel()">
+    <span *ngIf="data.cancelButtonText; else defaultCancel">{{ data.cancelButtonText }}</span>
+    <ng-template #defaultCancel>{{ defaultCancelButtonText }}</ng-template>
+  </button>
+    <button mat-flat-button color="accent" (click)="confirm()">
+    <span *ngIf="data.confirmButtonText; else defaultConfirm">{{ data.confirmButtonText }}</span>
+    <ng-template #defaultConfirm>{{ defaultConfirmButtonText }}</ng-template>
+  </button>
+</mat-dialog-actions>

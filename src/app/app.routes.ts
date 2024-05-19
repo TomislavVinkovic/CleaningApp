@@ -16,7 +16,7 @@ import { AdminListingsComponent } from './admin-panel/admin-listings/admin-listi
 import { AdminOffersComponent } from './admin-panel/admin-offers/admin-offers.component';
 import { AppJobsComponent } from './app-panel/app-jobs/app-jobs.component';
 import { AppOffersComponent } from './app-panel/app-offers/app-offers.component';
-import { AppListingsComponent } from './home-panel/app-listings/app-listings.component';
+import { AppListingsComponent } from './app-panel/app-listings/app-listings.component';
 
 export const routes: Routes = [
     {

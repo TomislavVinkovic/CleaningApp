@@ -58,8 +58,6 @@ export class AdminListingsComponent implements OnInit {
     this.isLoading = true;
     this.listingsService.getListings(this.pagination).subscribe({
       next: (result) => {
-        console.log('Oglasi')
-        console.log(result.data)
         this.listings.set(result.data);
         this.pagination.totalResults = result.meta.total;
         this.isLoading = false;
@@ -103,6 +101,5 @@ export class AdminListingsComponent implements OnInit {
         }
       }
     );
-
   }
 }
