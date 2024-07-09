@@ -16,8 +16,14 @@ export const appLoginGuard: CanActivateFn = (route, state) => {
 
       // if the user is logged in redirect to dashboard page
       if(!!user) {
-        router.navigate(['/app']);
-        return false;
+        if(auth.isSuperUser()) {
+          router.navigate(['/admin/dashboard']);
+          return false;
+        }
+        if(auth.isNormalUser()) {
+          router.navigate(['/app/dashboard']);
+          return false;
+        }
       }
       // otherwise, go to the login page
       return true;

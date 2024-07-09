@@ -71,12 +71,14 @@ export class AdminUsersComponent implements OnInit {
   }
 
   verifyUserConfirmed(user: User) {
+    this.snackbar.open('Verifikacija u tijeku...');
     this.usersService.verifyUser(user.id!).subscribe({
       next: (response) => {
         this.snackbar.open(response.data.message);
         this.getUsers();
       },
       error: (error) => {
+        this.snackbar.dismiss();
         this.errorHandler.handleError(error);
       }
     });
@@ -96,12 +98,14 @@ export class AdminUsersComponent implements OnInit {
   }
 
   deactivateUserConfirmed(user: User) {
+    this.snackbar.open('Deaktivacija u tijeku...');
     this.usersService.deactivateUser(user.id!).subscribe({
       next: (response) => {
         this.snackbar.open(response.data.message);
         this.getUsers();
       },
       error: (error) => {
+        this.snackbar.dismiss();
         this.errorHandler.handleError(error);
       }
     });
@@ -121,12 +125,14 @@ export class AdminUsersComponent implements OnInit {
 
 
   resetPasswordConfirmed(user: User) {
+    this.snackbar.open('Resetiranje lozinke u tijeku...');
     this.usersService.resetPassword(user.id!).subscribe({
       next: (response) => {
         this.snackbar.open(response.data.message);
         this.getUsers();
       },
       error: (error) => {
+        this.snackbar.dismiss();
         this.errorHandler.handleError(error);
       }
     });

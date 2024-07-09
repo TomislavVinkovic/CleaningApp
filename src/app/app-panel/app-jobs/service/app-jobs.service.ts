@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { Job } from '../../../models/job';
 import { ClientPagination } from '../../../types/client-pagination';
 import { map } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
 export class AppJobsService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient  
   ) { }
 
   getJobs(pagination: ClientPagination) {

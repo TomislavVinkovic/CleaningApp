@@ -52,7 +52,13 @@ export const routes: Routes = [
 
     {
         path: 'app',
+        
         children: [
+            {
+                path: '',
+                redirectTo: 'login',
+                pathMatch: 'full',
+            },
             { 
                 path: 'login',
                 canActivate: [appLoginGuard],
@@ -88,13 +94,18 @@ export const routes: Routes = [
     {
         path: 'admin',
         children: [
+            {
+                path: '',
+                redirectTo: 'login',
+                pathMatch: 'full',
+            },
             { 
                 path: 'login',
                 canActivate: [adminLoginGuard],
                 component: AdminLoginComponent
             },
             { 
-                path: '',
+                path: 'dashboard',
                 canActivate: [adminAuthGuard],
                 component: AdminDashboardComponent,
                 children: [

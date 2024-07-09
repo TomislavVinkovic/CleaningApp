@@ -87,6 +87,7 @@ export class AdminOffersComponent {
       'Odustani',
     ).subscribe({
       next: (result) => {
+        this.snackbar.open('Brisanje oglasa u tijeku...');
         if (result) {
           this.offersService.deleteOffer(offer.id!).subscribe({
             next: (response) => {
@@ -94,6 +95,7 @@ export class AdminOffersComponent {
               this.getOffers();
             },
             error: (error) => {
+              this.snackbar.dismiss();
               this.errorHandler.handleError(error);
             }
           });

@@ -79,6 +79,7 @@ export class AppJobsComponent {
       'Odustani'
     ).subscribe({
       next: (result) => {
+        this.snackbar.open('Radim...');
         if (result) {
           this.jobsService.markJobAsComplete(job.id!).subscribe({
             next: (response) => {
@@ -86,6 +87,7 @@ export class AppJobsComponent {
               this.getJobs();
             },
             error: (error) => {
+              this.snackbar.dismiss();
               this.errorHandler.handleError(error);
             }
           });

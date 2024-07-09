@@ -55,7 +55,7 @@ export class AdminLoginComponent implements OnInit {
     const data: UserLoginApiType = this.getFormattedData();
     this.authService.login(data).subscribe({
       next: (data) => {
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/dashboard']);
       },
       error: (error) => {
         this.errorHandler.handleError(error);

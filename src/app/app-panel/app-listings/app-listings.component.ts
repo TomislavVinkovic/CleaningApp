@@ -98,6 +98,7 @@ export class AppListingsComponent {
             this.getListings();
           },
           error: (error) => {
+            this.snackbar.dismiss();
             this.isLoading = false;
             this.errorHandler.handleError(error);
           }
